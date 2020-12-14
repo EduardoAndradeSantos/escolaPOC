@@ -20,25 +20,17 @@ public class AlunoService {
 	AlunoRepository _repository;
 
 	// CRIAR ALUNO
-	public BaseResponse criarAluno(AlunoRequest request) {
+	public BaseResponse criar(AlunoRequest request) {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
 		if (request.getNome() == "" || request.getNome().isEmpty()) {
 			response.message = "Campo nome não pode ser vazio";
 			return response;
-		} else if (request.getAv1() < 0) {
-			response.message = "Campo AV1 não pode ser menor que zero";
-			return response;
-		} else if (request.getAv2() < 0) {
-			response.message = "Campo AV2 não pode ser menor que zero";
-			return response;
 		}
 
 		Aluno aluno = new Aluno();
 		aluno.setNome(request.getNome());
-//		aluno.setAv1(request.getAv1());
-//		aluno.setAv2(request.getAv2());
 
 		_repository.save(aluno);
 		response.message = "Aluno criado com sucesso!";
@@ -55,86 +47,67 @@ public class AlunoService {
 
 		response.setId(aluno.get().getId());
 		response.setNome(aluno.get().getNome());
-//		response.setAv1(aluno.get().getAv1());
-//		response.setAv2(aluno.get().getAv2());
-//
-//		Double media = (((aluno.get().getAv1()) + (aluno.get().getAv2())) / 2);
-//		if (media >= 7) {
-//			response.setSituacao("Aprovado");
-//		} else {
-//			response.setSituacao("Reprovado");
-//		}
 
 		response.statusCode = 200;
 		response.message = "Aluno obtido com sucesso.";
 
 		return response;
 	}
-	
-	//OBTER TODOS OS ALUNOS
+
+	// OBTER TODOS OS ALUNOS
 	public ListAlunoResponse listar() {
-		
+
 		List<Aluno> lista = _repository.findAll();
-		
+
 		ListAlunoResponse response = new ListAlunoResponse();
 		response.setAlunos(lista);
 		response.message = "Lista obtida com sucesso";
 		response.statusCode = 200;
-		
+
 		return response;
 	}
-	
+
 	// ATUALIZAR ALUNO POR ID
 	public BaseResponse atualizar(Long id, AlunoRequest alunoRequest) {
-		
+
 		Optional<Aluno> alunoExistente = _repository.findById(id);
 		Long idTemp = alunoExistente.get().getId();
-		
+
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
-		
+
 		if (alunoRequest.getNome() == null || alunoRequest.getNome() == "") {
 			response.message = "novo nome de aluno não foi preenchido";
+			return response;
 		}
-		
+
 		Aluno aluno = new Aluno();
 		aluno.setId(idTemp);
 		aluno.setNome(alunoRequest.getNome());
-		
+
 		_repository.save(aluno);
-		
+
 		response.statusCode = 200;
 		response.message = "Aluno atualizado com sucesso";
-		
+
 		return response;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// DELETE - DELETAR ALUNO POR ID
+	public BaseResponse deletar(Long id) {
+		BaseResponse response = new BaseResponse();
+
+		if (id == null) {
+			response.statusCode = 400;
+			response.message = "Id de conta não existe";
+			return response;
+		}
+
+		_repository.deleteById(id);
+
+		response.statusCode = 200;
+		response.message = "Conta Excluida com sucesso!";
+		return response;
+	}
+
 }

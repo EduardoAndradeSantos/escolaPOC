@@ -1,6 +1,6 @@
 package br.escola.response;
 
-public class AlunoResponse extends BaseResponse {
+public class DisciplinaResponse {
 	public Long id;
 	public String nome;
 

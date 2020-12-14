@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Professor {
@@ -13,10 +11,6 @@ public class Professor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-
-	@ManyToOne
-	@JoinColumn(name = "disciplina_id")
-	private Disciplina disciplina;
 
 	public Long getId() {
 		return id;
@@ -32,14 +26,6 @@ public class Professor {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
 	}
 
 }

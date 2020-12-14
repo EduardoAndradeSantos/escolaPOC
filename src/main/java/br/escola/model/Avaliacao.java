@@ -18,12 +18,8 @@ public class Avaliacao {
 	private Aluno aluno;
 
 	@ManyToOne
-	@JoinColumn(name = "professor_id")
-	private Professor professor;
-
-	@ManyToOne
-	@JoinColumn(name = "disciplina_id")
-	private Disciplina disciplina;
+	@JoinColumn(name = "professorDisciplina_id")
+	private ProfessorDisciplina professorDisciplina;
 
 	private Double av1;
 	private Double av2;
@@ -44,20 +40,12 @@ public class Avaliacao {
 		this.aluno = aluno;
 	}
 
-	public Professor getProfessor() {
-		return professor;
+	public ProfessorDisciplina getProfessorDisciplina() {
+		return professorDisciplina;
 	}
 
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
+	public void setProfessorDisciplina(ProfessorDisciplina professorDisciplina) {
+		this.professorDisciplina = professorDisciplina;
 	}
 
 	public Double getAv1() {

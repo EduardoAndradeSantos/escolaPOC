@@ -6,7 +6,7 @@ import br.escola.model.Aluno;
 
 public class ListAlunoResponse extends BaseResponse {
 
-	private List<Aluno> alunos;
+	public List<Aluno> alunos;
 
 	public List<Aluno> getAlunos() {
 		return alunos;

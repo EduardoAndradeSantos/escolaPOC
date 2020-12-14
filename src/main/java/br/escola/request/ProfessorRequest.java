@@ -1,6 +1,6 @@
 package br.escola.request;
 
-public class AlunoRequest {
+public class ProfessorRequest {
 	private String nome;
 
 	public String getNome() {
