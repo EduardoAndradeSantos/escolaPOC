@@ -9,7 +9,7 @@ import br.escola.response.BaseResponse;
 import br.escola.service.AvaliacaoService;
 
 @RestController
-@RequestMapping("/Avaliacoes")
+@RequestMapping("/avaliacoes")
 public class AvaliacaoController extends BaseController {
 
 	@Autowired
@@ -47,5 +47,16 @@ public class AvaliacaoController extends BaseController {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
+	
+	// GET - OBTER AVALICOES DE UM ALUNO POR ID DO ALUNO
+		@GetMapping(path = "/aluno/{id}")
+		public ResponseEntity<BaseResponse> obterAluno(@PathVariable Long id) {
+			try {
+				BaseResponse response = _service.obterAluno(id);
+				return ResponseEntity.status(response.statusCode).body(response);
+			} catch (Exception e) {
+				return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+			}
+		}
 
 }

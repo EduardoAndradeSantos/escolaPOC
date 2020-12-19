@@ -131,9 +131,23 @@ public class AvaliacaoService {
 		return response;
 	}
 
+	//LISTAR TODAS AS AVALIACOES
 	public ListAvaliacaoResponse listar() {
 
 		List<Avaliacao> lista = _repository.findAll();
+
+		ListAvaliacaoResponse response = new ListAvaliacaoResponse();
+		response.setAvaliacoes(lista);
+		response.statusCode = 200;
+		response.message = "Lista obtida com sucesso.";
+
+		return response;
+	}
+	
+	// OBTER AVALICOES DE UM ALUNO POR ID DO ALUNO
+	public ListAvaliacaoResponse obterAluno(Long id) {
+
+		List<Avaliacao> lista = _repository.findByAlunoId(id);
 
 		ListAvaliacaoResponse response = new ListAvaliacaoResponse();
 		response.setAvaliacoes(lista);

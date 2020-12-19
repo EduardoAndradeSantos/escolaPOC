@@ -1,7 +1,5 @@
 package br.escola.response;
 
-import br.escola.model.Aluno;
-
 public class AvaliacaoResponse extends BaseResponse {
 	public Long id;
 	public AlunoResponse aluno;
